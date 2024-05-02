@@ -1,0 +1,37 @@
+---
+import { getSession } from "auth-astro/server"
+const session = await getSession(Astro.request)
+console.log(session)
+---
+
+<header class="flex items-center justify-between bg-[#f0f0f0] p-[1rem]">
+	{
+		session ? (
+			<button
+				class=" cursor-pointer border-none bg-[#0070f3] px-[1rem] py-[0.5rem] text-white"
+				id="logout"
+			>
+				Logout
+			</button>
+		) : (
+			<button
+				class="cursor-pointer border-none bg-[#0070f3] px-[0.5rem] py-[1rem] text-white"
+				id="login"
+			>
+				Login
+			</button>
+		)
+	}
+</header>
+
+<script>
+	const { signIn, signOut } = await import("auth-astro/client")
+	const login = document.querySelector("#login") as HTMLButtonElement
+	if (login) {
+		login.onclick = () => signIn("google")
+	}
+	const logout = document.querySelector("#logout") as HTMLButtonElement
+	if (logout) {
+		logout.onclick = () => signOut()
+	}
+</script>
