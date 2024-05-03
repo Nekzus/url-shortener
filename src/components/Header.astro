@@ -1,23 +1,47 @@
 ---
+import ChevronDown from "@/components/icons/ChevronDown.astro"
+import { User, db, like } from "astro:db"
 import { getSession } from "auth-astro/server"
+
 const session = await getSession(Astro.request)
-console.log(session)
+
+if (session && session.user?.email && session.user?.name) {
+	const res = await db.select().from(User).where(like(User.email, session.user.email))
+
+	if (res.length === 0) {
+		await db.insert(User).values({
+			email: session.user.email,
+			name: session.user.name,
+		})
+	}
+}
 ---
 
-<header class="flex items-center justify-between bg-[#f0f0f0] p-[1rem]">
+<header class="flex items-center justify-end p-[1rem]">
 	{
 		session ? (
-			<button
-				class=" cursor-pointer border-none bg-[#0070f3] px-[1rem] py-[0.5rem] text-white"
-				id="logout"
-			>
-				Logout
-			</button>
+			<div id="dropdown-menu" class="group relative">
+				<div id="dropdown-label" class="flex cursor-pointer items-center">
+					<span>{session.user?.name?.split(" ")[0]}</span>
+					<ChevronDown />
+				</div>
+				<div id="dropdown-content" class="absolute hidden bg-white text-black group-hover:block">
+					<nav>
+						<ul>
+							<li>
+								<a href="#">Ver mis URLs</a>
+							</li>
+							<li>
+								<button class="bg-white p-[0.5rem]" id="logout">
+									Logout
+								</button>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
 		) : (
-			<button
-				class="cursor-pointer border-none bg-[#0070f3] px-[0.5rem] py-[1rem] text-white"
-				id="login"
-			>
+			<button class="bg-white p-[0.5rem] text-black" id="login">
 				Login
 			</button>
 		)
