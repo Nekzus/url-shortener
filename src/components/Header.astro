@@ -21,18 +21,28 @@ if (session && session.user?.email && session.user?.name) {
 	{
 		session ? (
 			<div id="dropdown-menu" class="group relative">
-				<div id="dropdown-label" class="flex cursor-pointer items-center">
-					<span>{session.user?.name?.split(" ")[0]}</span>
-					<ChevronDown />
+				<div id="dropdown-label" class="flex cursor-pointer items-center gap-[0.5rem]">
+					<span class="text-white">{session.user?.name?.split(" ")[0]}</span>
+					<ChevronDown
+						class:list={{ display: "flex", alignItems: "center" }}
+						width="24"
+						height="24"
+						color="white"
+					/>
 				</div>
-				<div id="dropdown-content" class="absolute hidden bg-white text-black group-hover:block">
+				<div
+					id="dropdown-content"
+					class="absolute hidden w-[150px] rounded-[3px] bg-white p-[0.8rem] text-black group-hover:block"
+				>
 					<nav>
-						<ul>
+						<ul class="list-none">
 							<li>
-								<a href="#">Ver mis URLs</a>
+								<a href="#" class="text-black no-underline any-hover:text-gray-400">
+									Ver mis URLs
+								</a>
 							</li>
 							<li>
-								<button class="bg-white p-[0.5rem]" id="logout">
+								<button class="border-none bg-transparent any-hover:text-gray-400" id="logout">
 									Logout
 								</button>
 							</li>
@@ -59,3 +69,23 @@ if (session && session.user?.email && session.user?.name) {
 		logout.onclick = () => signOut()
 	}
 </script>
+
+<style>
+	a,
+	button {
+		font-size: 1.2rem;
+		font-family:
+			system-ui,
+			-apple-system,
+			BlinkMacSystemFont,
+			"Segoe UI",
+			Roboto,
+			Oxygen,
+			Ubuntu,
+			Cantarell,
+			"Open Sans",
+			"Helvetica Neue",
+			sans-serif;
+		font-weight: 500;
+	}
+</style>

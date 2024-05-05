@@ -1,4 +1,6 @@
 ---
+import Header from "@/components/Header.astro"
+import { Toaster } from "sonner"
 interface Props {
 	title: string
 }
@@ -17,7 +19,11 @@ const { title } = Astro.props
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Toaster richColors client:only="react" />
 	</body>
 </html>
 <style is:global>
@@ -27,6 +33,15 @@ const { title } = Astro.props
 		font-family: system-ui, sans-serif;
 		background: #13151a;
 		background-size: 224px;
+	}
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
 	}
 	code {
 		font-family:

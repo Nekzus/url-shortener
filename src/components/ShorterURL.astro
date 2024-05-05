@@ -1,0 +1,19 @@
+---
+import ShorterURLReact from "@/components/ShorterURLReact"
+import { getUserByEmail } from "@/utils/db"
+import { getSession } from "auth-astro/server"
+const session = await getSession(Astro.request)
+
+let userId: number | undefined
+if (session && session.user?.email) {
+	const res = await getUserByEmail(session.user.email)
+
+	if (res.success && res.data) {
+		userId = res.data.id
+	}
+}
+---
+
+<section class="m-[0_auto] flex w-[40%] flex-col items-center">
+	<ShorterURLReact userId={userId} client:load />
+</section>
