@@ -1,0 +1,63 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { getUrlsFromUser, getUserByEmail } from "@/utils/db"
+import { getSession } from "auth-astro/server"
+
+const session = await getSession(Astro.request)
+
+const h1 = session
+	? `URLs acortadas de ${session.user?.name?.split(" ")[0]}`
+	: "Inicia sesion para acceder a tus URLs acortadas"
+
+let urls: { url: string; code: string }[] = []
+
+if (session && session.user?.email) {
+	const user = await getUserByEmail(session.user.email)
+	if (user.success && user.data) {
+		const urlsRes = await getUrlsFromUser(user.data.id)
+
+		if (urlsRes.success && urlsRes.data) {
+			urls = urlsRes.data.map((url) => url)
+		}
+	}
+}
+---
+
+<Layout title="Mis URLs acortadas">
+	<h1>{h1}</h1>
+	<ul class="flex list-none flex-col gap-[1rem]">
+		{
+			urls.map((url) => (
+				<li class="flex justify-between">
+					<span>{url.url}</span>
+					<button
+						value={url.code}
+						id="copy-shortened-url"
+						class="cursor-pointer rounded-[5px] border-none bg-gray-600 p-[0.6rem] text-[14px] text-white transition duration-[0.2s] any-hover:bg-gray-400"
+					>
+						Copiar URL acortada
+					</button>
+				</li>
+			))
+		}
+	</ul>
+</Layout>
+
+<script>
+	import { toast } from "sonner"
+	const url = window.location.origin
+	const copyShortenedUrl = document.querySelectorAll<HTMLButtonElement>("#copy-shortened-url")
+
+	if (copyShortenedUrl) {
+		for (const button of copyShortenedUrl) {
+			button.addEventListener("click", () => {
+				try {
+					navigator.clipboard.writeText(`${url}/${button.value}`)
+					toast.success("URL copiada al portapapeles")
+				} catch {
+					toast.error("Error al copiar la URL")
+				}
+			})
+		}
+	}
+</script>

@@ -69,7 +69,7 @@ const ShorterURLReact = ({ userId }: { userId?: number }) => {
 			<input
 				type="url"
 				placeholder="Escribe aqui tu URL"
-				className="p-[0.5rem] text-[1.05rem] text-black"
+				className="p-[0.5rem] text-[0.9rem] text-black lg:text-[1.05rem]"
 				defaultValue={url}
 				onChange={(e) => setUrl(e.target.value)}
 			/>
@@ -82,7 +82,7 @@ const ShorterURLReact = ({ userId }: { userId?: number }) => {
 			<input
 				disabled
 				type="url"
-				className="p-[0.5rem] text-[1.05rem] text-black"
+				className="p-[0.5rem] text-[0.9rem] text-black lg:text-[1.05rem]"
 				ref={shortenedUrlRef}
 			/>
 			<button

@@ -1,14 +1,15 @@
 ---
 import ChevronDown from "@/components/icons/ChevronDown.astro"
-import { User, db, like } from "astro:db"
+import { getUserByEmail } from "@/utils/db"
+import { User, db } from "astro:db"
 import { getSession } from "auth-astro/server"
 
 const session = await getSession(Astro.request)
 
 if (session && session.user?.email && session.user?.name) {
-	const res = await db.select().from(User).where(like(User.email, session.user.email))
+	const res = await getUserByEmail(session.user.email)
 
-	if (res.length === 0) {
+	if (res.success && !res.data) {
 		await db.insert(User).values({
 			email: session.user.email,
 			name: session.user.name,
@@ -32,12 +33,12 @@ if (session && session.user?.email && session.user?.name) {
 				</div>
 				<div
 					id="dropdown-content"
-					class="absolute hidden w-[150px] rounded-[3px] bg-white p-[0.8rem] text-black group-hover:block"
+					class="absolute right-0 hidden w-[150px] rounded-[3px] bg-white p-[0.8rem] text-black group-hover:block"
 				>
 					<nav>
 						<ul class="list-none">
 							<li>
-								<a href="#" class="text-black no-underline any-hover:text-gray-400">
+								<a href="/my-urls" class="text-black no-underline any-hover:text-gray-400">
 									Ver mis URLs
 								</a>
 							</li>
@@ -51,7 +52,10 @@ if (session && session.user?.email && session.user?.name) {
 				</div>
 			</div>
 		) : (
-			<button class="bg-white p-[0.5rem] text-black" id="login">
+			<button
+				class="bg-transparent p-[0.5rem] text-[1rem] font-[500] text-white any-hover:bg-gray-500"
+				id="login"
+			>
 				Login
 			</button>
 		)

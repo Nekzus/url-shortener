@@ -1,6 +1,14 @@
-import { db } from 'astro:db';
+import { db, ShortenedUrl, User } from "astro:db"
 
-// https://astro.build/db/seed
 export default async function seed() {
-	// TODO
+	await db.insert(User).values({
+		email: "fSs6d@example.com",
+		name: "John Doe",
+	})
+
+	await db.insert(ShortenedUrl).values({
+		userId: 1,
+		url: "https://example.com",
+		code: "abc123",
+	})
 }
