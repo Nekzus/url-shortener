@@ -1,16 +1,14 @@
-import { defineConfig } from 'astro/config';
-import node from "@astrojs/node";
-import auth from "auth-astro";
-import db from "@astrojs/db";
-import tailwind from "@astrojs/tailwind";
+import db from "@astrojs/db"
+import react from "@astrojs/react"
+import tailwind from "@astrojs/tailwind"
+import { defineConfig } from "astro/config"
+import auth from "auth-astro"
 
-import react from "@astrojs/react";
+import vercel from "@astrojs/vercel/serverless"
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: node({
-    mode: "standalone"
-  }),
-  integrations: [auth(), db(), tailwind(), react()]
-});
+	output: "server",
+	adapter: vercel(),
+	integrations: [auth(), db(), tailwind(), react()],
+})
