@@ -1,4 +1,5 @@
 ---
+import ArrowBack from "@/components/icons/ArrowBack.astro"
 import Layout from "@/layouts/Layout.astro"
 import { getUrlsFromUser, getUserByEmail } from "@/utils/db"
 import { getSession } from "auth-astro/server"
@@ -24,7 +25,11 @@ if (session && session.user?.email) {
 ---
 
 <Layout title="Mis URLs acortadas">
-	<h1>{h1}</h1>
+	<a
+		class="flex gap-[0.4rem] text-white no-underline transition duration-[2s] any-hover:text-gray-700"
+		href="/"><ArrowBack width="24" height="24" color="white" />Volver a inicio</a
+	>
+	<h1 class="mt-[2rem]">{h1}</h1>
 	<ul class="flex list-none flex-col gap-[1rem]">
 		{
 			urls.map((url) => (
