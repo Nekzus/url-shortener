@@ -12,8 +12,8 @@ dependencies:
     specifier: 0.11.6
     version: 0.11.6(@types/react@18.3.1)(react@18.3.1)
   '@astrojs/node':
-    specifier: 8.3.0
-    version: 8.3.0(astro@4.7.1)
+    specifier: 8.3.1
+    version: 8.3.1(astro@4.7.1)
   '@astrojs/react':
     specifier: ^3.5.0
     version: 3.5.0(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.3.1)(react@18.3.1)(vite@5.2.11)
@@ -216,8 +216,8 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/node@8.3.0(astro@4.7.1):
-    resolution: {integrity: sha512-XskynbRTrpY9nqzc4NDrulNWoynRvVO+8UmEKjw6KZABUYUmjZqN88sa/RXtXl0CPI2sPZ5Gzi3WXH8y2PKd5Q==}
+  /@astrojs/node@8.3.1(astro@4.7.1):
+    resolution: {integrity: sha512-JwJzE1zyNcb2Tnk1PJIiIV2vGadR/h0C7h3WeN50H7S/DbNpkGrfwKrOxxpZwhkujnudddToA9U4yv+IPlCf0g==}
     peerDependencies:
       astro: ^4.2.0
     dependencies:
