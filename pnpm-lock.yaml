@@ -12,8 +12,8 @@ importers:
         specifier: 0.7.0
         version: 0.7.0(prettier-plugin-astro@0.14.0)(prettier@3.3.2)(typescript@5.5.2)
       '@astrojs/db':
-        specifier: 0.11.6
-        version: 0.11.6(@types/react@18.3.1)(react@18.3.1)
+        specifier: 0.11.7
+        version: 0.11.7(@types/react@18.3.1)(react@18.3.1)
       '@astrojs/node':
         specifier: 8.3.2
         version: 8.3.2(astro@4.11.0(@types/node@20.12.8)(typescript@5.5.2))
@@ -92,8 +92,8 @@ packages:
   '@astrojs/compiler@2.8.0':
     resolution: {integrity: sha512-yrpD1WRGqsJwANaDIdtHo+YVjvIOFAjC83lu5qENIgrafwZcJgSXDuwVMXOgok4tFzpeKLsFQ6c3FoUdloLWBQ==}
 
-  '@astrojs/db@0.11.6':
-    resolution: {integrity: sha512-uDypExJu9szjieIKvoSpu57NCwQI0q9cW71jEuFND22T7TM+hnBshWnmYSb783Z8a5mdv5CF/krLlC7+jeAJ+Q==}
+  '@astrojs/db@0.11.7':
+    resolution: {integrity: sha512-upJfu/GpW0AwFIIkWPmIzLRrXibmyKdtjUB+T/9FvuH25Bgk4ym62d87clh+0acBgGQw98mezSOtBCenWTAT0Q==}
 
   '@astrojs/internal-helpers@0.4.0':
     resolution: {integrity: sha512-6B13lz5n6BrbTqCTwhXjJXuR1sqiX/H6rTxzlXx+lN1NnV4jgnq/KJldCQaUWJzPL5SiWahQyinxAbxQtwgPHA==}
@@ -134,8 +134,8 @@ packages:
       react: ^17.0.2 || ^18.0.0 || ^19.0.0-beta
       react-dom: ^17.0.2 || ^18.0.0 || ^19.0.0-beta
 
-  '@astrojs/studio@0.1.0':
-    resolution: {integrity: sha512-pjggMFgtZHPem6RWall02DTa54VCQ4fjqj4bLV0CpQEi0ydgDlughb81PtLhpQPTV0IUtTFOnHbzx6rcKMBAzg==}
+  '@astrojs/studio@0.1.1':
+    resolution: {integrity: sha512-X4PxYQZmkXhgw9rlNKVeCzU6q+U9Cy3k3J5oP4jOTmqTE8TyjCadAad3NweDJCY9Rhgv/w+qhGfjl2JG2lcTaw==}
 
   '@astrojs/tailwind@5.1.0':
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
@@ -3066,9 +3066,9 @@ snapshots:
 
   '@astrojs/compiler@2.8.0': {}
 
-  '@astrojs/db@0.11.6(@types/react@18.3.1)(react@18.3.1)':
+  '@astrojs/db@0.11.7(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
-      '@astrojs/studio': 0.1.0
+      '@astrojs/studio': 0.1.1
       '@libsql/client': 0.6.2
       async-listen: 3.0.1
       ci-info: 4.0.0
@@ -3187,7 +3187,7 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/studio@0.1.0':
+  '@astrojs/studio@0.1.1':
     dependencies:
       ci-info: 4.0.0
       kleur: 4.1.5
